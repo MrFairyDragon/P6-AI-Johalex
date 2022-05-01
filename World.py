@@ -20,8 +20,12 @@ class World:
     def draw(self, screen):
         for i in range(self.board.shape[0]):
             for j in range(self.board.shape[1]):
-                self.board[i][j].update_neighbours(self.board)
                 self.board[i][j].draw(screen)
+
+    def update_neighbours(self):
+        for i in range(self.board.shape[0]):
+            for j in range(self.board.shape[1]):
+                self.board[i][j].update_neighbours(self.board)
 
     def get_clicked_tile(self, x, y):
         image_clicked = []

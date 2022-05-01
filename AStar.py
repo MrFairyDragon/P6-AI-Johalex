@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+from TileList import TileList
 
 
 def make_path(current, parent):
@@ -13,6 +14,15 @@ def calc_h_score(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
     return abs(x1 - x2) + abs(y1 - y2)
+
+
+def get_cost(tile):
+    if tile.type == TileList.MUD:
+        return 3
+    if tile.type == TileList.SAND:
+        return 2
+    else:
+        return 1
 
 
 class AStar:
@@ -30,6 +40,7 @@ class AStar:
         while tiles_needs_checking:
             current = queue.get()[2]
             tiles_needs_checking.remove(current)
+            print("test")
             if current == end:
                 return make_path(current, parent)
             for neighbour in current.neighbors:
@@ -38,7 +49,7 @@ class AStar:
                 if temp_g_score < g_score[neighbour]:
                     parent[neighbour] = current
                     g_score[neighbour] = temp_g_score
-                    f_score[neighbour] = temp_g_score + calc_h_score(neighbour.worldPosition, end.worldPosition)
+                    f_score[neighbour] = temp_g_score + (calc_h_score(neighbour.worldPosition, end.worldPosition)*get_cost(neighbour))
 
                     if neighbour not in tiles_needs_checking:
                         counter += 1
