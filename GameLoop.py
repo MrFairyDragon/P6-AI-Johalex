@@ -52,7 +52,6 @@ class GameLoop:
                         self.path = False
                         self.pathStepCounter = 0
             pygame.display.update()
-
             # Trigger resource spawn chance
 
             # Trigger AI update

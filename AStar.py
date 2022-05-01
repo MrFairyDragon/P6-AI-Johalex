@@ -43,13 +43,11 @@ class AStar:
             if current == end:
                 return make_path(current, parent)
             for neighbour in current.neighbors:
-                print(neighbour)
                 temp_g_score = g_score[current] + get_cost(neighbour)
                 if temp_g_score < g_score[neighbour]:
                     parent[neighbour] = current
                     g_score[neighbour] = temp_g_score
                     f_score[neighbour] = temp_g_score + (calc_h_score(neighbour.worldPosition, end.worldPosition) + get_cost(neighbour))
-
                     if neighbour not in tiles_needs_checking:
                         counter += 1
                         queue.put((f_score[neighbour], counter, neighbour))
