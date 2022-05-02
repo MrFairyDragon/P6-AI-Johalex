@@ -9,7 +9,7 @@ from Player import Player
 class GameLoop:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((800, 600))
+        self.screen = pygame.display.set_mode((580, 480))
         pygame.display.set_caption("Game")
         self.world = World(11, 11)
         self.world.update_neighbours()
